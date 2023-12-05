@@ -1,8 +1,8 @@
 def read_numbers():
     numbers = []
-    line = open('numbers.txt', 'r')
+    file = open('numbers.txt', 'r')
     delimiter = ','
-    for number in line.read().split(delimiter):
+    for number in file.read().split(delimiter):
         numbers.append(int(number))
     return numbers
 
