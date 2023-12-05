@@ -1,3 +1,4 @@
+#!/usr/bin/sh
 if [ "$#" -ne 1 ]; then
     echo "Usage: $0 bit.ly/link"
     exit 1
