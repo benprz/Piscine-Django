@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CV de {surname} {name}</title>
+    </head>
+    <body>
+        Bonjour, je m'appelle {name}, et voici mon CV.
+        J'ai {age} ans et je suis un {profession}.
+    </body>
+</html>
