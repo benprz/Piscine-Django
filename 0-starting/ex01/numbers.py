@@ -6,11 +6,11 @@ def read_numbers():
         numbers.append(int(number))
     return numbers
 
-def print_numbers(numbers):
-    for number in numbers:
-        print(number)
-
-if __name__ == '__main__':
+def print_numbers():
     numbers = read_numbers()
     if len(numbers) > 0:
-        print_numbers(numbers)
+        for number in numbers:
+            print(number)
+
+if __name__ == '__main__':
+    print_numbers()

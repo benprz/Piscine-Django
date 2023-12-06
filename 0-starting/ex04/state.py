@@ -1,22 +1,9 @@
 import sys
 
-states = {
-"Oregon" : "OR",
-"Alabama" : "AL",
-"New Jersey": "NJ",
-"Colorado" : "CO"
-}
-capital_cities = {
-"OR": "Salem",
-"AL": "Montgomery",
-"NJ": "Trenton",
-"CO": "Denver"
-}
-
-def state(capital_city):
+def get_state(arg, states, capital_cities):
     state = None
     for key, value in capital_cities.items():
-        if value == capital_city:
+        if value == arg:
             state = key
             break
     if state:
@@ -26,14 +13,27 @@ def state(capital_city):
                 break
     return state
 
-if __name__ == '__main__':
-    if len(sys.argv) < 2:
-        sys.exit()
+def run(arg):
+    states = {
+        "Oregon" : "OR",
+        "Alabama" : "AL",
+        "New Jersey": "NJ",
+        "Colorado" : "CO"
+    }
+    capital_cities = {
+        "OR": "Salem",
+        "AL": "Montgomery",
+        "NJ": "Trenton",
+        "CO": "Denver"
+    }
 
-    capital_city = sys.argv[1]
-    state = state(capital_city)
+    state = get_state(arg, states, capital_cities)
     if state:
         print(state)
     else:
         print('Unknown capital city')
+
+if __name__ == '__main__':
+    if len(sys.argv) == 2:
+        run(sys.argv[1])
     

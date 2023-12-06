@@ -1,22 +1,9 @@
 import sys
 
-states = {
-"Oregon" : "OR",
-"Alabama" : "AL",
-"New Jersey": "NJ",
-"Colorado" : "CO"
-}
-capital_cities = {
-"OR": "Salem",
-"AL": "Montgomery",
-"NJ": "Trenton",
-"CO": "Denver"
-}
-
-def get_state(capital_city):
+def get_state(arg, states, capital_cities):
     state = None
     for key, value in capital_cities.items():
-        if value == capital_city:
+        if value == arg:
             state = key
             break
     if state:
@@ -26,27 +13,39 @@ def get_state(capital_city):
                 break
     return state
 
-def capital_city(state):
-    if state in states:
-        return capital_cities[states[state]]
+def get_capital_city(arg, states, capital_cities):
+    if arg in states:
+        return capital_cities[states[arg]]
     else:
         return None
 
-if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        sys.exit()
+def run(args):
+    states = {
+        "Oregon" : "OR",
+        "Alabama" : "AL",
+        "New Jersey": "NJ",
+        "Colorado" : "CO"
+    }
+    capital_cities = {
+        "OR": "Salem",
+        "AL": "Montgomery",
+        "NJ": "Trenton",
+        "CO": "Denver"
+    }
 
-    input = sys.argv[1]
-    for expr in input.split(','):
-        formatted_expr = " ".join(expr.split()).title()
-        if formatted_expr:
-            capital = capital_city(formatted_expr)
+    for arg in args.split(','):
+        formatted_arg = " ".join(arg.split()).title()
+        if formatted_arg:
+            capital = get_capital_city(formatted_arg, states, capital_cities)
             if capital:
-                print("{} is the capital of {}".format(capital, formatted_expr))
+                print("{} is the capital of {}".format(capital, formatted_arg))
             else:
-                state = get_state(formatted_expr)
+                state = get_state(formatted_arg, states, capital_cities)
                 if state:
-                    print("{} is the capital of {}".format(formatted_expr, state))
+                    print("{} is the capital of {}".format(formatted_arg, state))
                 else:
-                    print('{} is neither a capital city nor a state'.format(expr.strip()))
-    
+                    print('{} is neither a capital city nor a state'.format(arg.strip()))
+
+if __name__ == '__main__':
+    if len(sys.argv) == 2:
+        run(sys.argv[1])

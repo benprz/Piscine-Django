@@ -26,11 +26,10 @@ def couples_to_dict():
         dict[couple[1]] = couple[0]
     return dict
 
-def print_dict(dict):
+def print_dict():
+    dict = couples_to_dict()
     for key in dict:
-        print(key + ':' + dict[key])
+        print(key + ' : ' + dict[key])
 
 if __name__ == '__main__':
-    dict = couples_to_dict()
-    if dict:
-        print_dict(dict)
+    print_dict()
