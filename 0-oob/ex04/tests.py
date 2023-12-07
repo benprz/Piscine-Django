@@ -49,6 +49,7 @@ def test_empty_texts():
     
 def test_errors():
     # Type error if the content isn't made of Text or Elem.
+    print("Test 1:")
     try:
         Elem(content=1)
     except Exception as e:
@@ -56,6 +57,7 @@ def test_errors():
     # The right way :
     assert str(Elem(content=Text(1))) == '<div>\n  1\n</div>'
 
+    print("Test 2:")
     # Type error if the elements of the list aren't Text or Elem instances.
     try:
         Elem(content=['foo', Elem(), 1])
@@ -65,6 +67,7 @@ def test_errors():
     assert (str(Elem(content=[Text('foo'), Elem(), Text(1)]))
             == '<div>\n  foo\n  <div></div>\n  1\n</div>')
 
+    print("Test 3:")
     # Same with add_method()
     try:
         elem = Elem()
@@ -73,6 +76,7 @@ def test_errors():
     except Exception as e:
         assert isinstance(e, Elem.ValidationError)
     
+    print("Test 4:")
     # Or with lists :
     try :
         elem = Elem()
@@ -81,6 +85,7 @@ def test_errors():
     except Exception as e:
         assert isinstance(e, Elem.ValidationError)
 
+    print("Test 5:")
     # str can't be used :
     try:
         elem = Elem()
@@ -89,6 +94,7 @@ def test_errors():
     except Exception as e:
         assert isinstance(e, Elem.ValidationError)
     
+    print("Test 6:")
     try:
         elem = Elem(content='')
         raise(Exception("incorrect behaviour."))
