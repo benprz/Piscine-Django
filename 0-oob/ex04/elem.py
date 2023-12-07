@@ -19,7 +19,6 @@ class Text(str):
         """
         Do you really need a comment to understand this method?..
         """
-        print(self.__replace_chars_with_codes(super()).replace('\n', '\n<br />\n'))
         return self.__replace_chars_with_codes(super()).replace('\n', '\n<br />\n')
 
 class Elem:
@@ -46,20 +45,21 @@ class Elem:
         Make sure it renders everything (tag, attributes, embedded
         elements...).
         """
+        result = ''
         if self.tag_type == 'double':
+            result = f"<{self.tag}{self.__make_attr()}>"
             content_result = self.__make_content()
             if content_result != '' and content_result != '\n':
-                result = f"<{self.tag}>"
                 result += content_result
+                result = self.__replace_codes_with_chars(result)
                 result = result.replace('\n', '\n  ')
                 result = result[0:-2]
-                result += f"</{self.tag}>"
-            else:
-                result = f"<{self.tag}></{self.tag}>"
+            result += f"</{self.tag}>"
         elif self.tag_type == 'simple':
             result = f"<{self.tag}>"
-        print("__str__ =\n'" + result + "'\n")
+        # print("__str__ =\n'" + result + "'\n")
         return result
+
 
     def __make_attr(self):
         """
@@ -102,8 +102,40 @@ class Elem:
                                                 isinstance(elem, Elem)
                                                 for elem in content])))
 
+    @staticmethod
+    def __replace_codes_with_chars(text: str) -> str:
+        return text.replace("&amp;", '&')\
+                    .replace("&quot;", '"')\
+                    .replace("&apos;", "'")\
+                    .replace("&lt;", '<')\
+                    .replace("&gt;", '>')
+
     class ValidationError(Exception):
         pass
 
 if __name__ == '__main__':
-    print(str(Elem(content='')))
+    """
+        <html>
+        <head>
+        <title>
+        "Hello ground!"
+        </title>
+        </head>
+        <body>
+        <h1>
+        "Oh no, not again!"
+        </h1>
+        <img src="http://i.imgur.com/pfp3T.jpg" />
+        </body>
+        </html>"""
+
+    html = Elem(tag='html', content=[
+        Elem(tag='head', content=Elem(tag='title', content=Text('"Hello ground!"'))),
+        Elem(tag='body', content=[
+            Elem(tag='h1', content=Text('"Oh no, not again!"')),
+            Elem(tag='img', attr={'src': 'http://i.imgur.com/pfp3T.jpg'})
+        ])
+    ])
+
+    print(html)
+
