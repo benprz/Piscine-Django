@@ -16,6 +16,19 @@ class Page(Elem):
             valid = False
         return valid
 
+    def __check_elem_tags(self, elem) {
+        if isinstance(elem, Elem)
+            if elem.content:
+                for content in elem.content:
+                    if not isinstance(content, Text):
+                        if (content.tag == 'title' or content.tag == 'h1' or content.tag == 'h2' or content.tag == 'li' or content.tag == 'th' or content.tag == 'td'):
+                            if (len(content.content) != 1 or not isinstance(content.content[0], Text)):
+                                return False
+                        elif not Page.__check_if_title_hx_li_th_td_elems_are_valid(content):
+                            return False
+        return True
+    }
+
     # True if valid, False if not
     @staticmethod
     def __check_if_elem_tags_are_supported(elem):
@@ -121,8 +134,8 @@ if __name__ == '__main__':
         ]),
         Body([
             # Meta(attr={'charset': 'UTF-8'}),
-            H1(Text('"Oh no, not again!"')),
-            Span(P([Text('"Oh no, not again!"'), Text('"O"')]))
+            H1(Text('"Oh no, not again!"'))
+            # P([Text('"Oh no, not again!"'), Text('"O"')])
         ])
     ]))
     print(page.is_valid())
