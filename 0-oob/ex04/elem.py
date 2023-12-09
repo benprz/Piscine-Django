@@ -57,7 +57,6 @@ class Elem:
             result += f"</{self.tag}>"
         elif self.tag_type == 'simple':
             result = f"<{self.tag}>"
-        # print("__str__ =\n'" + result + "'\n")
         return result
 
 
