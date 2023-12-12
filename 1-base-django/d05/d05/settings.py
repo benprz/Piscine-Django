@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'ex00',
     'ex01',
     'ex02',
+    'ex03',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +58,7 @@ ROOT_URLCONF = 'd05.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['ex00/templates', 'ex01/templates', 'ex02/templates'],
+        'DIRS': ['ex00/templates', 'ex01/templates', 'ex02/templates', 'ex03/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,3 +125,31 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+HISTORY_LOG_FILE = f'{BASE_DIR}/ex02/logs/history.log'
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    'formatters': {
+        'ex02': {
+            'format': '[{asctime}] {message}',
+            'style': '{',
+        }
+    },
+    "handlers": {
+        "ex02": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": HISTORY_LOG_FILE,
+            "formatter": "ex02",
+        },
+    },
+    "loggers": {
+        "ex02": {
+            "handlers": ["ex02"],
+            "level": "INFO",
+            "propagate": False,
+        },
+    },
+}
