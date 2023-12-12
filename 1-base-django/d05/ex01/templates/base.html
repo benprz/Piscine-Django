@@ -1,11 +1,14 @@
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-        <title>{% block title %}My amazing site{% endblock %}</title>
-    </head>
-    <body>
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Django{% endblock title %}</title>
+    {% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}">
+    {% endblock style %}
+</head>
+<body>
+    {% block content %}{% endblock content %}
+</body>
 </html>
