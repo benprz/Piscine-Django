@@ -37,9 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'd06',
-    'ex00.apps.Ex00Config',
-    'ex01.apps.Ex01Config',
+    'ex00',
+    'ex01',
 ]
 
 MIDDLEWARE = [
@@ -57,7 +56,7 @@ ROOT_URLCONF = 'd06.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['ex02/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

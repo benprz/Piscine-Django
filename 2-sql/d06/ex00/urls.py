@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
+from d06.globals import init
 
 urlpatterns = [
-    path('init', views.init, name='init'),
+    path('init', init, name='init'),
 ]
