@@ -25,7 +25,13 @@ def run(template_filename: str, settings_filename: str):
             if len(variables):
                 formatted_content = get_formatted_template_content(template_filename, variables)
                 write_html(formatted_content, basename)
+        else:
+            print("Template filename must have .template extension")
+    else:
+        print("File not found")
 
 if __name__ == "__main__":
     if len(sys.argv) == 2:
         run(sys.argv[1], 'settings.py')
+    else:
+        print("Usage: python render.py <template_filename>")

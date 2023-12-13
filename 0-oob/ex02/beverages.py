@@ -17,10 +17,10 @@ class Coffee(HotBeverage):
 
 class Tea(HotBeverage):
     name="tea"
-    price=0.30
+    # price=0.30
 
-    def description(self):
-        return "Just some hot water in a cup."
+    # def description(self):
+    #     return "Just some hot water in a cup."
 
 class Chocolate(HotBeverage):
     name="chocolate"

@@ -26,7 +26,7 @@ def run():
     print(intern2.make_coffee())
 
     try:
-        intern2.make_coffee().work()
+        intern1.make_coffee().work()
     except Exception as e:
         print(e)
 

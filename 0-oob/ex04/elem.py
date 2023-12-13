@@ -56,7 +56,7 @@ class Elem:
                 result = result[0:-2]
             result += f"</{self.tag}>"
         elif self.tag_type == 'simple':
-            result = f"<{self.tag}>"
+            result = f"<{self.tag}>{self.__make_attr()}"
         return result
 
 

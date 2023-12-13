@@ -32,12 +32,12 @@ class Title(Elem):
         super().__init__(tag='title', content=content, attr=attr)
 
 class Meta(Elem):
-    def __init__(self, content=None, attr={}):
-        super().__init__(tag='meta', content=content, attr=attr)
+    def __init__(self, attr={}):
+        super().__init__(tag='meta', attr=attr, tag_type='simple')
 
 class Img(Elem):
-    def __init__(self, content=None, attr={}):
-        super().__init__(tag='img', content=content, attr=attr)
+    def __init__(self, attr={}):
+        super().__init__(tag='img', attr=attr, tag_type='simple')
 
 class Table(Elem):
     def __init__(self, content=None, attr={}):
@@ -88,12 +88,12 @@ class Span(Elem):
         super().__init__(tag='span', content=content, attr=attr)
 
 class Hr(Elem):
-    def __init__(self, content=None, attr={}):
-        super().__init__(tag='hr', content=content, attr=attr)
+    def __init__(self, attr={}):
+        super().__init__(tag='hr', attr=attr, tag_type='simple')
 
 class Br(Elem):
-    def __init__(self, content=None, attr={}):
-        super().__init__(tag='br', content=content, attr=attr)
+    def __init__(self, attr={}):
+        super().__init__(tag='br', attr=attr, tag_type='simple')
 
 if __name__ == '__main__':
     print( Html( [Head(), Body()] ) )
@@ -120,3 +120,29 @@ if __name__ == '__main__':
         ] )
     ] )
     print(html)
+
+    elem_title = Title(Text("Hello ground!"))
+    elem_meta = Meta({"charset": "utf-8"})
+    elem_head = Head([elem_meta, elem_title], {"lang": "fr"})
+    elem_h2 = H2(Text("BURNET Lucille"))
+    elem_h1 = H1(Text("CV pour la Piscine Django"))
+    elem_br = Br()
+    elem_p = P([Text("parce qu'il faut bien la tester aussi"), elem_br])
+    elem_img = Img({"src": "http://i.imgur.com/pfp3T.jpg"})
+    elem_div = Div([elem_p, elem_img])
+    elem_li = Li(Text("Algorithmique, Techniques d'optimisation et IA"))
+    elem_ul = Ul(elem_li)
+    elem_ol = Ol(elem_li)
+    elem_span = Span([elem_ol, elem_ul])
+    elem_th = Th(Text("Langues"), {"colspan": "2"})
+    elem_tr0 = Tr(elem_th)
+    elem_thead = Elem(tag='thead', content=elem_tr0)
+    elem_td0 = Td()
+    elem_td1 = Td(Text("niveau"))
+    elem_tr1 = Tr([elem_td0, elem_td1])
+    elem_tbody = Elem(tag='tbody', content=elem_tr1)
+    elem_table = Table([elem_thead, elem_tbody])
+    elem_hr = Hr()
+    elem_body = Body([elem_h2, elem_h1, elem_div, elem_span, elem_table, elem_hr])
+    elem_html = Elem(tag='html', content=[elem_head, elem_body], attr={'lang': 'fr'})
+    print(elem_html)

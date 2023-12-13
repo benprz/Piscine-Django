@@ -2,12 +2,6 @@ class HotBeverage:
     name="hot beverage"
     price=0.30
 
-    # def __init__(self, name = None, price = None):
-    #     if name:
-    #         self.name = name
-    #     if price:
-    #         self.price = price
-
     def description(self):
         return "Just some hot water in a cup."
     
