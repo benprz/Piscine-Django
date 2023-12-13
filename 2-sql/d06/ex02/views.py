@@ -80,9 +80,9 @@ def display(request):
         """
     ]
     try:
-        movies = exec_sql(commands)
+        movies = exec_sql(commands, fetchall=True)
     except Exception as e:
-        return HttpResponse("No data available")
+        return HttpResponse(f"<b>Error</b><br>{e})<br>")
     if len(movies) == 0:
         return HttpResponse("No data available")
     print(movies)

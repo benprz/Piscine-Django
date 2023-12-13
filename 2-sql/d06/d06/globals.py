@@ -21,20 +21,19 @@ def get_db_connection() -> psycopg2.extensions.connection:
 
     return psycopg2.connect(**params)
 
-def exec_sql(commands):
+def exec_sql(commands, fetchall=False):
+    value = ''
     if type(commands) is str:
         commands = [commands]
-    try:
-        connection = get_db_connection()
-        cursor = connection.cursor()
-        for command in commands:
-            cursor.execute(command)
+    connection = get_db_connection()
+    cursor = connection.cursor()
+    for command in commands:
+        cursor.execute(command)
+    if fetchall:
         value = cursor.fetchall()
-        cursor.close()
-        connection.commit()
-        return value;
-    except (Exception, psycopg2.DatabaseError) as error:
-        raise Exception(error)
+    cursor.close()
+    connection.commit()
+    return value;
 
 def init(request):
 
@@ -42,7 +41,7 @@ def init(request):
         
     req =\
     f"""
-        CREATE TABLE IF NOT EXISTS {table_name}(
+        CREATE TABLE {table_name}(
             title VARCHAR(64) UNIQUE NOT NULL,
             episode_nb INT PRIMARY KEY,
             opening_crawl TEXT,
