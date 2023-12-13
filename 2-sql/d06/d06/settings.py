@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_ip213w1!2^)9uzs(y6&#17#qtvwgfivs-p4o+dr@o7c)o(6e@'
+SECRET_KEY = 'django-insecure-_%xsk5*_30%v!639b6@=9li4by9=gpg$^#rmh8bpdnfj07n*af'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'd06',
+    'ex00.apps.Ex00Config',
 ]
 
 MIDDLEWARE = [
@@ -76,10 +78,11 @@ WSGI_APPLICATION = 'd06.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "OPTIONS": {
-            "service": "my_service",
-            "passfile": ".my_pgpass",
-        },
+        "NAME": "djangotraining",
+        "USER": "djangouser",
+        "PASSWORD": "secret",
+        "HOST": "127.0.0.1",
+        "PORT": "5432",
     }
 }
 
