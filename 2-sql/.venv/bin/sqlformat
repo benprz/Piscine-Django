@@ -1,4 +1,4 @@
-#!/home/bperez/Documents/piscine-django/2-sql/.venv/bin/python3
+#!/Users/neben/Documents/code/42/piscine-django/2-sql/.venv/bin/python3.11
 # -*- coding: utf-8 -*-
 import re
 import sys

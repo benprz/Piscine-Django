@@ -55,7 +55,7 @@ def populate(request):
             'release_date': '2015-12-11'
         }
     ]
-    model = Movies()
+    model = ex01_models.Movies()
     http_response = ""
     for movie in movies:
         http_response += f"{movie['title']}: "
@@ -74,4 +74,4 @@ def display(request):
     movies = Movies.objects.all()
     if len(movies) == 0:
         return HttpResponse("No data available")
-    return render(request, 'display.html', {'movies': movies})
+    return render(request, 'ex03/display.html', {'movies': movies})

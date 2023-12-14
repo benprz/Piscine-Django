@@ -80,9 +80,9 @@ def display(request):
         """
     ]
     try:
-        movies = exec_sql(commands)
+        movies = exec_sql(commands, fetchall=True)
     except:
         return HttpResponse("No data available")
     if len(movies) == 0:
         return HttpResponse("No data available")
-    return render(request, 'display.html', {'movies': movies})
+    return render(request, 'ex02/display.html', {'movies': movies})
