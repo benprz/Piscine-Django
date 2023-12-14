@@ -1,2 +1,2 @@
-django
-psycopg2-binary
+django==4.2
+django-bootstrap4
