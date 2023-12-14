@@ -8,7 +8,7 @@
     <div>
         <h1>Remove</h1>
         <form method="post">
-        {% csrf_token %} {{ form }}
+        {% csrf_token %} {{ form.as_table }}
         <input type="submit" value="Remove" />
         </form>
     </div>

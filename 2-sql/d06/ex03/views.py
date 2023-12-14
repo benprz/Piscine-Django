@@ -55,7 +55,7 @@ def populate(request):
             'release_date': '2015-12-11'
         }
     ]
-    model = ex01_models.Movies()
+    model = Movies()
     http_response = ""
     for movie in movies:
         http_response += f"{movie['title']}: "
