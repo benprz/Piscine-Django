@@ -4,7 +4,7 @@ from .models import User
 class RegisterForm(forms.Form):
     username = forms.CharField(label='Username', max_length=100)
     password = forms.CharField(label='Password', max_length=100, widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Password2', max_length=100, widget=forms.PasswordInput)
+    password_confirm = forms.CharField(label='Password2', max_length=100, widget=forms.PasswordInput)
     
     def clean(self):
         cleaned_data = super().clean()
