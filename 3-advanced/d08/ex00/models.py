@@ -1,13 +1,20 @@
+from django.db import models
 from django.utils import timezone
-from django.views.generic.detail import DetailView
+from django.contrib.auth.models import User
 
-from articles.models import Article
+class Article(models.Model):
+    title = models.CharField(max_length=64, null=False)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    synopsis = models.CharField(max_length=312, null=False)
+    content = models.TextField(null=False)
 
+    def __str__(self):
+        return self.title
 
-class ArticleDetailView(DetailView):
-    model = Article
+class UserFavouriteArticle(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, null=False)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["now"] = timezone.now()
-        return context
+    def __str__(self):
+        return self.article.title
